@@ -168,38 +168,38 @@ function startGL()
 
     let stepElevation = 90/6;
     let stepAngle = 360/36;
-    let radius = [300.0 , 1.0 , 1.0 , 1.0 , 1.0 , 10.0 , 8.0 , 3.0 , 3.0 ];
-    let przesuniecie = [0.0 , 300.0 , 330.0 , 360.0 , 390.0 , 450.0 , 525.0 , 575.0 , 600.0 ];
+    let rad = [300.0 , 1.0 , 1.0 , 1.0 , 1.0 , 10.0 , 8.0 , 3.0 , 3.0 ];
+    let dst = [0.0 , 300.0 , 330.0 , 360.0 , 390.0 , 450.0 , 525.0 , 575.0 , 600.0 ];
 
     let i=0;
     for (i=0; i<9; i+=1)
     {
         for(let elevation=-90; elevation< 90; elevation+= stepElevation)
         {
-            let radiusXZ = radius[i]*Math.cos(elevation*Math.PI/180);
-            let radiusY  = radius[i]*Math.sin(elevation*Math.PI/180);
+            let radiusXZ = rad[i]*Math.cos(elevation*Math.PI/180);
+            let radiusY  = rad[i]*Math.sin(elevation*Math.PI/180);
 
-            let radiusXZ2 = radius[i]*Math.cos((elevation+stepElevation)*Math.PI/180);
-            let radiusY2  = radius[i]*Math.sin((elevation+stepElevation)*Math.PI/180);
+            let radiusXZ2 = rad[i]*Math.cos((elevation+stepElevation)*Math.PI/180);
+            let radiusY2  = rad[i]*Math.sin((elevation+stepElevation)*Math.PI/180);
 
             for(let angle = 0; angle < 360; angle+= stepAngle)
             {
 
-                let px1 = przesuniecie[i]+radiusXZ*Math.cos(angle*Math.PI/180);
+                let px1 = dst[i]+radiusXZ*Math.cos(angle*Math.PI/180);
                 let py1 = radiusY;
-                let pz1 = przesuniecie[i]+radiusXZ*Math.sin(angle*Math.PI/180);
+                let pz1 = dst[i]+radiusXZ*Math.sin(angle*Math.PI/180);
 
-                let px2 = przesuniecie[i]+radiusXZ*Math.cos((angle+stepAngle)*Math.PI/180);
+                let px2 = dst[i]+radiusXZ*Math.cos((angle+stepAngle)*Math.PI/180);
                 let py2 = radiusY;
-                let pz2 = przesuniecie[i]+radiusXZ*Math.sin((angle+stepAngle)*Math.PI/180);
+                let pz2 = dst[i]+radiusXZ*Math.sin((angle+stepAngle)*Math.PI/180);
 
-                let px3 = przesuniecie[i]+radiusXZ2*Math.cos(angle*Math.PI/180);
+                let px3 = dst[i]+radiusXZ2*Math.cos(angle*Math.PI/180);
                 let py3 = radiusY2;
-                let pz3 = przesuniecie[i]+radiusXZ2*Math.sin(angle*Math.PI/180);
+                let pz3 = dst[i]+radiusXZ2*Math.sin(angle*Math.PI/180);
 
-                let px4 = przesuniecie[i]+radiusXZ2*Math.cos((angle+stepAngle)*Math.PI/180);
+                let px4 = dst[i]+radiusXZ2*Math.cos((angle+stepAngle)*Math.PI/180);
                 let py4 = radiusY2;
-                let pz4 = przesuniecie[i]+radiusXZ2*Math.sin((angle+stepAngle)*Math.PI/180);
+                let pz4 = dst[i]+radiusXZ2*Math.sin((angle+stepAngle)*Math.PI/180);
 
                 vertexPosition.push(...createRect2(px1,py1,pz1,px2,py2,pz2,px3,py3,pz3,px4,py4,pz4)); // Ściana XZ
             }
